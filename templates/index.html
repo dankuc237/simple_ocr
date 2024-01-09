@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Offline OCR App</title>
+</head>
+
+<body>
+    <h1>OCR App</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="input">Wybierz pliki</label><br>
+        <input type="file" name="image" id="input" multiple><br>
+        <button type="submit">Submit</button>
+    </form>
+
+
+    {% if data %}
+    {% for image, text in data %}
+    <div style="display: flex;">
+        <div style="width: 50%;">
+            <h2>Preview:</h2>
+            <img src="{{ image }}" alt="Uploaded Image" style="max-width: 100%;">
+        </div>
+        <div style="width: 50%;">
+            <h2>Extracted Text:</h2>
+            {% if text %}
+            <p>{{ text }}</p>
+            {% else %}
+            <p>No text extracted.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+</body>
+
+</html>
